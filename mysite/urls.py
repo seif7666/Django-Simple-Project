@@ -9,6 +9,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SITE_ROOT = os.path.join(BASE_DIR, 'site')
 
 urlpatterns = [
+    # path('',include('polls.urls')),
     path('polls/',include('polls.urls')),
     path('admin/', admin.site.urls),
     url(r'^site/(?P<path>.*)$', serve,

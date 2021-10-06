@@ -6,8 +6,23 @@ class Question(models.Model):
     question_text= models.CharField(max_length=200)
     pub_date= models.DateTimeField('date published')
 
+    def getAllQuestions():
+        objects= Question.objects.all()
+        return list(objects)
+    
+    def getQuestionById(id):
+        question= Question.objects.filter(id=id)
+        print(question)
+        if len(question):
+            question = question[0]
+        else:
+            question = 'Not Found!'
+
+        return question
+    
     def __str__(self) -> str:
-        return self.question_text
+        return str(self.id)+": "+self.question_text
+    
 
     def was_published_recently(self):
         return self.pub_date >= timezone.now()
