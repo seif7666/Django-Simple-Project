@@ -45,7 +45,6 @@ class IndexView(generic.ListView):
         return Question.objects.all()
 
 class DetailView(generic.DetailView):
-    # context_object_name='x'
     model= Question
     template_name='polls/detail.html'
 
