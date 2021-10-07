@@ -21,7 +21,7 @@ class Question(models.Model):
         return question
     
     def __str__(self) -> str:
-        return str(self.id)+": "+self.question_text
+        return self.question_text
     
 
     def was_published_recently(self):
