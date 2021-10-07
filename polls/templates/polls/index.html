@@ -4,21 +4,18 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Details</title>
+    <title>Questions</title>
 </head>
 <body>
-    <h1>{{ question.question_text }}</h1>
+    <h1>Questions</h1>
+    {% if questions %}
+    <ul>
+        {% for q in questions %}
+        <li><a href="{% url 'polls:detail' q.id%}">{{q.question_text}}</a></li>
+        {% endfor %}
 
-    {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
-    
-    <form action="{% url 'polls:vote' question.id %}" method="post">
-    {% csrf_token %}
-    {% for choice in question.choice_set.all %}
-        <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
-        <label for="choice{{ forloop.counter }}">{{ choice.choice_text }}</label><br>
-    {% endfor %}
-    <input type="submit" value="Vote">
-    </form>
+    </ul>
+    {% endif %}
     
 </body>
 </html>
