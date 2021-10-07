@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.http.response import Http404
 from polls.models import Question
-from django.template import loader
+from django.shortcuts import render
 
 
 
@@ -14,8 +14,9 @@ def index(request):
     return HttpResponse(res)
 
 def detail(request, question_id):
-    question= Question.getQuestionById(1)
-    return HttpResponse(question)
+    question= Question.getQuestionById(2)
+    question= {'text':question, 'id':1}
+    return HttpResponse(render(request, 'polls/anchor.html', question))
 
 def vote(request, question_id):
     return HttpResponse(f'You are voting at question: {question_id}')
