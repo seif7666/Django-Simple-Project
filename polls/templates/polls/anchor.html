@@ -4,10 +4,18 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anchor Tag</title>
+    <title>Questions</title>
 </head>
 <body>
-    <a href="{% url 'results' id %}">{{text}}</a>
+    <h1>Questions</h1>
+    {% if questions %}
+    <ul>
+        {% for q in questions %}
+        <li><a href="{% url 'polls:detail' q.id%}">{{q.question_text}}</a></li>
+        {% endfor %}
+
+    </ul>
+    {% endif %}
     
 </body>
 </html>
